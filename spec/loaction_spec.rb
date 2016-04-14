@@ -2,13 +2,12 @@ require 'location'
 
 describe 'Location' do
 
-  subject(:location) {Location.new(4,5,'N')}
+  subject(:location) {Location.new(4,5)}
 
   it {is_expected.to respond_to(:x)}
 
   it {is_expected.to respond_to(:y)}
 
-  it {is_expected.to respond_to(:direction)}
 
   it 'initialize with x coordinate' do
     expect(location.x).to eq 4
@@ -26,7 +25,4 @@ describe 'Location' do
     expect(location.y).to be_a_kind_of(Integer)
   end
 
-  it 'initialize with direction' do
-    expect(location.direction).to eq 'N'
-  end
 end
