@@ -7,30 +7,25 @@ class Direction
   end
 
   def turn_left
-    case
-    when @point == 'N'
-      @point = 'W'
-    when @point == 'W'
-      @point = 'S'
-    when @point == 'S'
-      @point = 'E'
-    when @point == 'E'
-      @point = 'N'
+    case @point
+    when 'N' then @point = 'W'
+    when 'W' then @point = 'S'
+    when 'S' then @point = 'E'
+    when 'E' then @point = 'N'
     end
   end
 
   def turn_right
-    case
-    when @point == 'N'
-      @point = 'E'
-    when @point == 'E'
-      @point = 'S'
-    when @point == 'S'
-      @point = 'W'
-    when @point == 'W'
-      @point = 'N'
+    case @point
+    when 'N' then @point = 'E'
+    when 'E' then @point = 'S'
+    when 'S' then @point = 'W'
+    when 'W' then @point = 'N'
     end
+  end
 
+  def north?
+    @point == 'N'
   end
 
 end
