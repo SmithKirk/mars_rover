@@ -2,10 +2,11 @@ class Location
 
   attr_reader :x, :y, :point
 
-  def initialize(x,y,point)
+  def initialize(x,y,point,plateau)
     @x = x.to_i
     @y = y.to_i
     @point = point
+    @plateau = plateau
   end
 
   def turn_left
@@ -36,20 +37,6 @@ class Location
   end
 
 
-  def north?
-    @point == 'N'
-  end
 
-  def south?
-    @point == 'S'
-  end
-
-  def east?
-    @point == 'E'
-  end
-
-  def west?
-    @point == 'W'
-  end
 
 end

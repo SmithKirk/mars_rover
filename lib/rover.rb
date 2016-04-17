@@ -2,8 +2,9 @@ class Rover
 
   attr_reader :location
 
-  def initialize(x,y,point)
-    @location = Location.new(x,y,point)
+  def initialize(plateau,location)
+    x,y,point = location.split(" ")
+    @location = Location.new(x,y,point,plateau)
   end
 
 

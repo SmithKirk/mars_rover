@@ -2,7 +2,7 @@ require 'location'
 
 describe 'Location' do
 
-  subject(:location) {Location.new(4,5,'N')}
+  subject(:location) {Location.new(4,5,'N','5 5')}
 
   it {is_expected.to respond_to(:point)}
 
