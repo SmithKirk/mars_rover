@@ -1,4 +1,3 @@
-require_relative 'location'
 class Rover
 
   attr_accessor :position
