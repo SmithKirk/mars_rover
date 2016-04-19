@@ -1,6 +1,6 @@
 class Rover
 
-  attr_accessor :position
+  attr_reader :position
 
   def initialize(plateau, position)
     x,y,d = position.split(" ")
@@ -17,7 +17,8 @@ class Rover
   end
 
   def explore_sequence(sequence)
-    sequence.split(""){each |command| action(command)}
+    sequence.split("").each{|command| action(command)}
+    status
   end
 
   def action(command)
@@ -48,7 +49,7 @@ class Rover
 
   def move
     x,y = case @position[:direction]
-    when 'N' then [0,1] unless cannot_move?
+      when 'N' then [0,1] unless cannot_move?
       when 'S' then [0,-1] unless cannot_move?
       when 'E' then [1,0] unless cannot_move?
       when 'W' then [-1,0] unless cannot_move?
@@ -56,14 +57,7 @@ class Rover
 
     @position[:x] += x.to_i
     @position[:y] += y.to_i
-
   end
-
-
-
-  # def move
-  #   @location.move unless cannot_move?
-  # end
 
   private
   def cannot_move?

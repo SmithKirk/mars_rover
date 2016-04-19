@@ -1,7 +1,7 @@
 require 'rover'
 
 describe 'Rover' do
-  subject(:rover) {Rover.new('5 5','1 2 N')}
+  let(:rover) {Rover.new('5 5','1 2 N')}
 
   describe '#status' do
     it "outputs rover\'s position" do
