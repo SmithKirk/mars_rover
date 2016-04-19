@@ -16,6 +16,23 @@ describe 'Rover' do
     end
   end
 
+  describe '#action' do
+    it 'M command calls #move' do
+      rover.action('M')
+      expect(rover.position[:y]).to eq 3
+    end
+
+    it 'L command calls #turn_left' do
+      rover.action('L')
+      expect(rover.position[:direction]).to eq 'W'
+    end
+
+    it 'R command calls #turn_right' do
+      rover.action('R')
+      expect(rover.position[:direction]).to eq 'E'
+    end
+  end
+
   describe '#turn_left' do
     it 'turn to face west when facing north' do
       rover.turn_left
@@ -84,46 +101,13 @@ describe 'Rover' do
       expect(rover.position[:x]).to eq 0
     end
 
-    context 'at north limit' do
+    context 'edge of plateau area' do
       before do
-        allow(rover).to receive(:at_north_limit?).and_return true
+        allow(rover).to receive(:cannot_move?).and_return true
       end
       it 'does not move' do
         rover.move
         expect(rover.position[:y]).to eq 2
-      end
-    end
-
-    context 'at south limit' do
-      before do
-        allow(rover).to receive(:at_south_limit?).and_return true
-      end
-      it 'does not move' do
-        2.times{rover.turn_right}
-        rover.move
-        expect(rover.position[:y]).to eq 2
-      end
-    end
-
-    context 'at east limit' do
-      before do
-        allow(rover).to receive(:at_east_limit?).and_return true
-      end
-      it 'does not move' do
-        rover.turn_right
-        rover.move
-        expect(rover.position[:x]).to eq 1
-      end
-    end
-
-    context 'at west limit' do
-      before do
-        allow(rover).to receive(:at_west_limit?).and_return true
-      end
-      it 'does not move' do
-        rover.turn_left
-        rover.move
-        expect(rover.position[:x]).to eq 1
       end
     end
   end

@@ -20,8 +20,6 @@ class Rover
     sequence.split(""){each |command| action(command)}
   end
 
-
-
   def action(command)
     case command
       when 'M' then move
@@ -50,15 +48,29 @@ class Rover
 
   def move
     x,y = case @position[:direction]
-      when 'N' then [0,1] unless at_north_limit?
-      when 'S' then [0,-1] unless at_south_limit?
-      when 'E' then [1,0] unless at_east_limit?
-      when 'W' then [-1,0] unless at_west_limit?
+    when 'N' then [0,1] unless cannot_move?
+      when 'S' then [0,-1] unless cannot_move?
+      when 'E' then [1,0] unless cannot_move?
+      when 'W' then [-1,0] unless cannot_move?
     end
 
     @position[:x] += x.to_i
     @position[:y] += y.to_i
 
+  end
+
+
+
+  # def move
+  #   @location.move unless cannot_move?
+  # end
+
+  private
+  def cannot_move?
+    at_north_limit? && @position[:direction] == 'N' ||
+    at_south_limit? && @position[:direction] == 'S' ||
+    at_east_limit? && @position[:direction] == 'E' ||
+    at_west_limit? && @position[:direction] == 'W'
   end
 
   def at_north_limit?
@@ -76,21 +88,5 @@ class Rover
   def at_west_limit?
     @position[:x] == @plateau.west_limit
   end
-
-  # def move
-  #   @location.move unless cannot_move?
-  # end
-
-  # def cannot_move?
-  #   at_north_limit? && @position[:direction] == 'N' ||
-  #   at_south_limit && @position[:direction] == 'S' ||
-  #   at_east_limit && @position[:direction] == 'E' ||
-  #   at_west_limit && @position[:direction] == 'W'
-  # end
-
-
-
-
-
 
 end
